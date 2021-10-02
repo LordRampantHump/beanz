@@ -1,7 +1,7 @@
 const path = require('path');
 class Web {
     constructor(router, app, express) {
-        console.log('web router loaded');
+        console.log('[SYSTEM] web router loaded');
         const webRoot = path.resolve('./server/html/temp/');
         var options = {
             root: webRoot
@@ -12,6 +12,7 @@ class Web {
 
 
         router.web.get('/', function(request, response) {
+            console.log(request.session)
             response.sendFile('index.html', options);
         })
 

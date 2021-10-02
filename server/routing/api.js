@@ -2,9 +2,9 @@ const vhost = require("vhost");
 
 class Api {
     constructor(router, app, express) {
-        console.log('api router loaded');
+        console.log('[SYSTEM] api router loaded');
       
-        app.use(vhost('api.localhost', router.api));
+        app.use(vhost('api.*', router.api));
         router.api.use(express.urlencoded({
             extended: true
         }))
