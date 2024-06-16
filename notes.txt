@@ -1,0 +1,7 @@
+***** For Development *****
+
+
+***** For Deployment *****
+
+Install mongodb for ubuntu
+Create a database and admin ownder using mongosh with the following example: db.createUser({user: "beanz", pwd: "beanz!password", roles: [ { role: "dbOwner", db: "beanz" } ]});

@@ -1,0 +1,32 @@
+<footer>
+    This is the included footer
+</footer>
+<%
+    function getDomainFromUrl(url) {
+  try {
+    // Parse the URL
+    const parsedUrl = new URL(url);
+    
+    // Extract the hostname
+    const hostname = parsedUrl.hostname;
+
+    // Split the hostname into parts
+    const parts = hostname.split('.');
+
+    // Return the last two parts (the domain and the top-level domain)
+    const domain = parts.slice(-2).join('.');
+    
+    return domain;
+  } catch (error) {
+    console.error('Invalid URL:', error);
+    return null;
+  }
+}
+%>
+
+
+
+
+
+<script src="https://kit.fontawesome.com/2a8c24321e.js" crossorigin="anonymous"></script>
+<script src="//static.<%- process.env.DOMAIN %>/js/ws.js"></script>

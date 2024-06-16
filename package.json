@@ -1,21 +1,29 @@
 {
-  "name": "beanz",
+  "name": "your-project-name",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "description": "Your project description",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon redis-server, app.js"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "connect-redis": "^7.1.1",
+    "consolebox": "^1.0.3",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.10",
     "express": "^4.17.1",
-    "express-session": "^1.17.2",
-    "http": "^0.0.1-security",
-    "http-proxy-middleware": "^2.0.1",
-    "nodemon": "^2.0.13",
-    "path": "^0.12.7",
+    "express-session": "^1.18.0",
+    "express-validator": "^7.1.0",
+    "http": "0.0.1-security",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.7.0",
+    "node-fetch": "^3.3.2",
+    "redis": "^4.6.14",
+    "redis-server": "^1.2.2",
+    "uuid": "^10.0.0",
     "vhost": "^3.0.2",
-    "ws": "^8.2.2"
+    "winston": "^3.13.0",
+    "ws": "^7.4.4"
   }
 }
