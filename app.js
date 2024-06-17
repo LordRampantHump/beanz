@@ -60,14 +60,15 @@ async function startServer() {
     // Configure session middleware with Redis as session store
   app.use(
     session({
+      name: 'session',
       proxy: (process.env.STATE != 'dev' ? true : false),
-      store: new RedisStore({ name: "beanz-session", client: redisClient }),
+      store: new RedisStore({client: redisClient}),
       secret: process.env.SESSION_SECRET,
       resave: false,
       saveUninitialized: true,
       cookie: {
         secure: (process.env.STATE != 'dev' ? true : false), // Change to true if using HTTPS
-        domain: "." + process.env.DOMAIN, // Ensures the cookie is accessible across subdomains
+        domain: '.' + process.env.DOMAIN, // Ensures the cookie is accessible across subdomains
         maxAge: 24 * 60 * 60 * 1000 * 365,
         sameSite: 'lax', // 1 year
         session: true,
