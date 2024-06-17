@@ -68,6 +68,7 @@ module.exports = {
   
   beanz: (req, res, next) => {
     res.setHeader('X-Powered-By', `${capitalizeFirstLetter(process.env.APP)} - © Ickle Mouse ${new Date().getFullYear()}`);
+    res.setHeader('Server', 'Beanz');
     const allowedExtensions = ['.ttf', '.woff', '.woff2'];
 
     // Parse the URL to get the pathname

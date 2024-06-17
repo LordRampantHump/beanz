@@ -156,7 +156,7 @@ if (typeof window.FontAwesomeKitConfig === 'undefined') {
 	document.body.appendChild(circ);
 	
 	// Define the WebSocket URL based on the current subdomain
-	const wsUrl = `ws://ws.${getMainDomain(window.location.href)}`;
+	const wsUrl = `${document.URL.substring(0,5) == "http:" ? 'ws' : 'wss'}://ws.${getMainDomain(window.location.href)}`;
 
 	// Create WebSocket connection
 	const socket = new WebSocket(wsUrl);
@@ -168,8 +168,11 @@ if (typeof window.FontAwesomeKitConfig === 'undefined') {
 	}
 
 	// WebSocket event listeners
+	function doping(){ socket.send("ping")}
+	let ping;
 	socket.onopen = () => {
 		updateStatus('#13e813', "WS is Open!");
+		ping = setInterval(doping, 10000);
 	};
 
 	socket.onerror = (error) => {
@@ -179,4 +182,5 @@ if (typeof window.FontAwesomeKitConfig === 'undefined') {
 
 	socket.onclose = () => {
 		updateStatus('#e82525', "WS is Closed!");
+		clearInterval(ping);
 	};

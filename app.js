@@ -16,9 +16,8 @@ const wsHandler = require("./ws_handlers/wsHandler");
 const errorsController = require("./controllers/errors");
 const { beanz, version, testWS } = require("./middlewares/all");
 
-const dotenv = require("dotenv");
+const dotenv = require("dotenv").config();
 const logger = require("./middlewares/logger");
-dotenv.config();
 
 
 
@@ -58,7 +57,8 @@ async function startServer() {
   }
 
   app.use(beanz);
-
+  console.log(process.env.STATE)
+  console.log(process.env.STATE != 'dev' ? false : true)
   // Configure session middleware with Redis as session store
   app.use(
     session({
@@ -68,9 +68,10 @@ async function startServer() {
       saveUninitialized: true,
       cookie: {
         name: "beanz_session",
-        secure: process.env.STATE === 'dev' ? false : true, // Change to true if using HTTPS
+        secure: process.env.STATE != 'dev' ? true : false, // Change to true if using HTTPS
         domain: "." + process.env.DOMAIN, // Ensures the cookie is accessible across subdomains
         maxAge: 24 * 60 * 60 * 1000 * 365, // 1 year
+        //sameSite: 'none'
       },
     }),
   );
