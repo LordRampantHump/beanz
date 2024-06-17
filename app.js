@@ -57,21 +57,22 @@ async function startServer() {
   }
 
   app.use(beanz);
-  console.log(process.env.STATE)
-  console.log(process.env.STATE != 'dev' ? false : true)
-  // Configure session middleware with Redis as session store
+    // Configure session middleware with Redis as session store
   app.use(
     session({
-      store: new RedisStore({ client: redisClient }),
+      proxy: (process.env.STATE != 'dev' ? true : false),
+      store: new RedisStore({ name: "beanz-session", client: redisClient }),
       secret: process.env.SESSION_SECRET,
       resave: false,
       saveUninitialized: true,
       cookie: {
-        name: "beanz_session",
-        secure: process.env.STATE != 'dev' ? true : false, // Change to true if using HTTPS
+        secure: (process.env.STATE != 'dev' ? true : false), // Change to true if using HTTPS
         domain: "." + process.env.DOMAIN, // Ensures the cookie is accessible across subdomains
-        maxAge: 24 * 60 * 60 * 1000 * 365, // 1 year
-        //sameSite: 'none'
+        maxAge: 24 * 60 * 60 * 1000 * 365,
+        sameSite: 'lax', // 1 year
+        session: true,
+        httpOnly: false
+
       },
     }),
   );

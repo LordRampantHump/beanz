@@ -1,13 +1,9 @@
-// db.js
+//db.js
 const { MongoClient } = require('mongodb');
 const dotenv = require("dotenv").config();
 const logger = require("./middlewares/logger");
-console.log(process.env.MONGODB);
-
 
 let db;
-//mongodb://beanz:beanz!password@localhost:27017/?authSource=admin mongodb://127.0.0.1:27017/beanz:beanz!password@localhost:27017/beanz
-
 
 const connectDB = async () => {
   if (db) return db;
